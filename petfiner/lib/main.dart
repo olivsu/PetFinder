@@ -1,220 +1,95 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'product_tile.dart';
+import 'product.dart';
+import 'product_details_screen.dart';
 
 void main() {
-  runApp(const HomeRegistro());
+  runApp(HomeWidget());
 }
 
-class HomeRegistro extends StatefulWidget {
-  const HomeRegistro({Key? key}) : super(key: key);
+class HomeWidget extends StatefulWidget {
+  const HomeWidget({Key? key}) : super(key: key);
 
   @override
-  _HomeRegistroState createState() => _HomeRegistroState();
+  _HomeWidgetState createState() => _HomeWidgetState();
 }
 
-class _HomeRegistroState extends State<HomeRegistro> {
+class _HomeWidgetState extends State<HomeWidget> {
+  final List<Product> products = [
+    Product(
+      nome: 'Produto 1',
+      descricao: 'Descrição do Produto 1',
+      preco: 19.99,
+      image:
+          'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/adf87c27-e670-4e75-86fd-31c1241b9ed6/air-max-90-mens-shoes-6n3vKB.png',
+    ),
+    Product(
+        nome: 'Produto 2',
+        descricao: 'Descrição do Produto 2',
+        preco: 9.99,
+        image: ''),
+    // Adicione mais produtos aqui se desejar
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment(0, 0),
-              colors: [
-                Color(0xFF4596EA),
-                Color(0xFF2F4CA5),
-              ],
-            ),
-          ),
+        appBar: AppBar(
+          title: Text('Loja Virtual'),
+        ),
+        body: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
           child: Column(
-            mainAxisSize: MainAxisSize.max,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
+                spacing: 8.0,
                 children: [
-                  Flexible(
-                    child: Align(
-                      alignment: AlignmentDirectional(0, 0),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 124, 16, 0),
-                        child: Text(
-                          'Bem-vindo ao PetFinder',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontSize: 44,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
+                  ChoiceChip(
+                    label: Text('Nike'),
+                    selected: false,
+                    onSelected: (selected) {},
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 124, 16, 0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: SvgPicture.asset(
-                        'assets/logo.svg',
-                        width: 64,
-                        height: 90,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                  ChoiceChip(
+                    label: Text('Adidas'),
+                    selected: false,
+                    onSelected: (selected) {},
+                  ),
+                  ChoiceChip(
+                    label: Text('Converse'),
+                    selected: false,
+                    onSelected: (selected) {},
+                  ),
+                  ChoiceChip(
+                    label: Text('Vans'),
+                    selected: false,
+                    onSelected: (selected) {},
                   ),
                 ],
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    print('Button pressed ...');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    elevation: 3,
-                    minimumSize: Size(368, 44),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                  ),
-                  icon: Icon(
-                    Icons.apple_rounded,
-                    size: 15,
-                  ),
-                  label: Text(
-                    'Cadastre-se com Facebook',
-                    style: TextStyle(
-                      color: Color(0xD5A227),
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    print('Button pressed ...');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    elevation: 3,
-                    minimumSize: Size(368, 44),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                  ),
-                  icon: Icon(
-                    Icons.facebook_rounded,
-                    size: 15,
-                  ),
-                  label: Text(
-                    'Cadastre-se com Facebook',
-                    style: TextStyle(
-                      color: Color(0xD5A227),
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    print('Button pressed ...');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    elevation: 3,
-                    minimumSize: Size(368, 44),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                  ),
-                  icon: Icon(
-                    Icons.g_mobiledata_rounded,
-                    size: 15,
-                  ),
-                  label: Text(
-                    'Cadastre-se com Facebook',
-                    style: TextStyle(
-                      color: Color(0xD5A227),
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 56, 0, 0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    print('Button pressed ...');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    //primary: Colors.transparent,
-                    elevation: 3,
-                    minimumSize: Size(368, 44),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32),
-                      side: BorderSide(
-                        color: Colors.white,
-                        width: 1,
-                      ),
-                    ),
-                  ),
-                  child: Text(
-                    'Registrar com E-mail',
-                    style: TextStyle(
-                      fontFamily: 'Readex Pro',
-                      //color: Colors.white,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0, 0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 120, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                        child: Text(
-                          'Já possui conta?',
-                          style: TextStyle(
-                            fontFamily: 'Readex Pro',
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w200,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'Entrar',
-                        style: TextStyle(
-                          fontFamily: 'Readex Pro',
-                          color: Colors.white,
-                          fontSize: 16,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              ListView.builder(
+                  itemCount: products.length,
+                  itemBuilder: (context, index) {
+                    return ProductTile(
+                      product: products[index],
+                      onProductTap: (product) {
+                        _showProductDetails(context, product);
+                      },
+                    );
+                  }),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void _showProductDetails(BuildContext context, Product product) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProductDetailsScreen(product: product),
       ),
     );
   }
